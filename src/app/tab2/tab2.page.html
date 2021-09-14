@@ -1,17 +1,36 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="secondary" mode="ios">
     <ion-title>
-      Tab 2
+      Cadastro
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" >
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <img src="https://cdn.pixabay.com/photo/2015/01/21/14/14/apple-606761_960_720.jpg">
+
+  <form [formGroup]="formulario" (submit)="cadastrar()">
+    <ion-card>
+      <ion-item lines="none">
+        <ion-input tpye="text" placeholder="Nome do produto" formControlName="nome" ></ion-input>        
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-input type="text" placeholder="Tipo Produto" formControlName="tipo"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-input type="text" placeholder="Quantidade" formControlName="quantidade"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-button type="submit" color="primary" expand="block" [disabled]="formulario.invalid">Enviar</ion-button>
+    </ion-card>
+  </form>
 </ion-content>
