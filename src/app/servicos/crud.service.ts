@@ -14,7 +14,7 @@ export class CrudService {
     this.caixaBox = this.angularFirestore.collection('Produtos');
   }  
 
-  //Pegar os dados no Firebase
+  //Pegar todos os produtos no Firebase
   getAllProducts(){
     return this.caixaBox.snapshotChanges().pipe(
       map(actions => {
@@ -32,9 +32,20 @@ export class CrudService {
     return this.caixaBox.add(produto);
   }
 
-  //Deletar produtos
+  //Deletar produtos no Firebase
   delProducts(id){
     return this.caixaBox.doc(id).delete();
+  }
+
+  //Captura somente um único produto específico
+  //Vamos utilizar esse método em conjunto como o metodo de atualizção
+  getProduct(id){
+    return this.caixaBox.doc(id).valueChanges();
+  }
+
+  //Metodo que atualiza
+  updateProduct(id, produto){
+    return this.caixaBox.doc(id).update(produto);
   }
 
 

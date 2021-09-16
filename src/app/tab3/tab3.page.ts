@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { ActivatedRoute } from '@angular/router';
+import { CrudService } from '../servicos/crud.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,21 +9,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page implements OnInit {
-  formularioEdit: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  idRoute = null;
+  productOne = {};
+
+  constructor(private activatedRoute: ActivatedRoute, private crudService: CrudService) {}
 
   ngOnInit(): void {
-    this.verificaForm();
-   }
+    this.idRoute = this.activatedRoute.snapshot.params['id'];
+
+    if (this.idRoute) {
+      this.crudService.getProduct(this.idRoute).subscribe(carrinho => {this.productOne = carrinho});
+    }     
+  }
+
+  update(forms){
+    this.crudService.updateProduct(this.idRoute, forms.value);
+    console.log(forms.value);
+  }
+
  
-   verificaForm(){
-     this.formularioEdit = this.formBuilder.group({
-       nome: ['', [Validators.required, Validators.minLength(3)]],
-       tipo: ['',[Validators.required, Validators.minLength(3)]]
-     })
-   }
- 
-   cadastrar(){
-     console.log(this.formularioEdit.value);
-   }
 }

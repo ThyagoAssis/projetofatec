@@ -11,10 +11,14 @@
 
     <ion-card *ngFor="let produto of estante">
       <ion-item lines="none">
-        {{ produto.nome }}
+        <strong>Nome: </strong>{{ produto.nome }} / <strong> Qtd: </strong>{{produto.quantidade}}
 
         <ion-button slot="end" fill="clear" color="danger" (click)="deletar(produto.id)">
           <ion-icon name="trash-outline" ></ion-icon>
+        </ion-button>
+
+        <ion-button slot="end" fill="clear" color="success"  style="margin-left: -10px;" [routerLink]="['/tabs/tab3',produto.id]">
+          <ion-icon name="document-text-outline"></ion-icon>
         </ion-button>
 
 

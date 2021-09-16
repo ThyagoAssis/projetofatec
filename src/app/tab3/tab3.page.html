@@ -9,17 +9,23 @@
 <ion-content [fullscreen]="true">
   <img src="https://cdn.pixabay.com/photo/2015/01/21/14/14/apple-606761_960_720.jpg">
 
-  <form [formGroup]="formularioEdit" (submit)="cadastrar()">
+  <form  #forms="ngForm"  (submit)="update(forms)">
 
     <ion-card>
       <ion-item lines="none">
-        <ion-input tpye="text" placeholder="Nome do produto" formControlName="nome"></ion-input>        
+        <ion-input tpye="text" placeholder="Nome do produto" name="nome" [ngModel]="productOne.nome"></ion-input>        
       </ion-item>
     </ion-card>
 
     <ion-card>
       <ion-item lines="none">
-        <ion-input type="text" placeholder="Tipo Produto" formControlName="tipo"></ion-input>
+        <ion-input type="text" placeholder="Tipo Produto" name="tipo" [ngModel]="productOne.tipo"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-input type="text" placeholder="Quantidade" name="quantidade" name="quantidade" [ngModel]="productOne.quantidade"></ion-input>
       </ion-item>
     </ion-card>
 
